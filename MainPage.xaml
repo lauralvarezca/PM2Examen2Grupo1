@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundColor="White"
+             x:Class="PM2Examen2Grupo1.MainPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nueva Ubicacion" Clicked="ToolbarItem_Clicked"></ToolbarItem>
+        <ToolbarItem Text="Ubicaciones Salvadas" Clicked="ToolbarItem_Clicked_1"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Padding="20" CornerRadius="0">
+                <Image Source="@Images/uth.png"
+                        HeightRequest="50"
+                       />
+            </Frame>
+
+            <toolkit:MediaElement
+                                x:Name="viewVideo"
+                                HeightRequest="200"
+                                WidthRequest="350"
+                                BackgroundColor="White"
+                                Margin="40,0,40,0"
+                                 />
+
+            <Button x:Name="btnGabarVideo"
+                    Text="Grabar Video"
+                    BackgroundColor="Purple"
+                    TextColor="White"
+                    Margin="5"
+                    Clicked="btnGabarVideo_Clicked"
+                    />
+
+            <Label Text="Latitude"
+                   TextColor="Black"
+                   Margin="5"
+                   HorizontalOptions="StartAndExpand"/>
+
+            <Entry Keyboard="Numeric" 
+                   x:Name="txtLatitud" 
+                   TextColor="Black"
+                   Placeholder="Latitud" 
+                   IsEnabled="False"/>
+
+            <Label Text="Longitud" 
+                   TextColor="Black"
+                   HorizontalOptions="StartAndExpand"/>
+
+            <Entry Keyboard="Numeric" 
+                   x:Name="txtLongitud" 
+                   TextColor="Black"
+                   Placeholder="Longitud" 
+                   IsEnabled="False"/>
+
+            <Label Text="Descripcion"
+                   TextColor="Black"
+                   HorizontalOptions="StartAndExpand"/>
+
+            <Editor Placeholder="Descripcion del lugar"
+                    x:Name="txtDescripcion"
+                    TextColor="Black"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    />
+
+            <Button x:Name="btnGrabarAudio"
+                    Text="Grabar Audio"
+                    BackgroundColor="Purple"
+                    TextColor="White"
+                    Margin="5"
+                    Clicked="btnGrabarAudio_Clicked"
+                     />
+
+            <Button x:Name="btnSalvarUbicacion"
+                    Text="Salvar Ubicacion"
+                    Clicked="btnSalvarUbicacion_Clicked"
+                    BackgroundColor="Purple"
+                    TextColor="White"
+                    Margin="5"
+                    />
+            <Button x:Name="btnUbicacionSalvadas"
+                    Clicked="btnUbicacionSalvadas_Clicked"
+                    Text="Lista Ubicacion"
+                    BackgroundColor="Purple"
+                    TextColor="White"
+                    Margin="5"
+                     />
+
+            <Label x:Name="lblUrl"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

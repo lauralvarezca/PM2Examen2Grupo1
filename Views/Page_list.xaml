@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2Examen2Grupo1.Views.Page_list"
+             Title="Page_list">
+
+    <Grid>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Items}" Margin="12" MaximumHeightRequest="400">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,0,10,0" Padding="20,5,20,5" WidthRequest="330" VerticalOptions="Start" HorizontalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+
+                        <StackLayout>
+                            <Grid Padding="10" ColumnSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>                                                    
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="1" Text="{Binding VideoDigital}" />
+
+                                <Label Grid.Column="2" Text="{Binding Descriocion}" HorizontalOptions="End"/>
+                            </Grid>
+                        </StackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
