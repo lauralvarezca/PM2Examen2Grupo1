@@ -5,8 +5,10 @@ using System.Text.Json;
 
 namespace PM2Examen2Grupo1.Views;
 
-public partial class Page_list : ContentPage
-{
+public partial class Page_list : ContentPage{
+    public static int id=0;
+    public static string url_video, url_audio, descripcion;
+    public static double latitud, longitud;
 
     public ObservableCollection<Sitios> Items
     {
@@ -69,5 +71,76 @@ public partial class Page_list : ContentPage
         }
 
         return null;
+    }
+
+    private async void action(object sender,TappedEventArgs e) {
+        var stackLayout = (StackLayout) sender;
+
+        var item = (Sitios) stackLayout.BindingContext;
+
+        if(item!=null) {
+            id=item.Id;
+            url_video=item.VideoDigital;
+            url_audio=item.AudioFile;
+            latitud=item.Latitud;
+            longitud=item.Longitud;
+            descripcion=item.Descripcion;
+            await DisplayAlert("Advertencia",""+id,"OK");
+        }
+    }
+
+    private async void delete_Clicked(object sender,EventArgs e) {
+        if(await verification_id()) {
+            await delete();
+        }
+    }
+
+    private async Task<bool> verification_id() {
+        if(id!=0){
+            return true;
+        }else{
+            await DisplayAlert("Advertencia","Elige un item","OK");
+        }
+
+        return false;
+    }
+
+    private async Task delete() {
+
+        Sitios users = new Sitios();
+        users.Id = id;
+
+        string response = "";
+
+        try {
+            Metodos insert = new Metodos();
+            response=await Task.Run(() => insert.insert_update_async(users,RestApi.delete));
+        } catch(Exception ex) {
+            await DisplayAlert("Advertencia",""+ex,"OK");
+        }
+
+        if(response=="exitoso") {
+            await DisplayAlert("Exitoso","Tu email se ha cambiado exitosamente","OK");
+            Items.Clear();
+            await load_record_date();
+        } else {
+            await DisplayAlert("Advertencia","No se modifico contraseña: "+response,"OK");
+        }
+    }
+
+    private async void update_Clicked(object sender,EventArgs e) {
+        await Navigation.PushAsync(new Page_update());
+    }
+
+    private async void view_map_Clicked(object sender,EventArgs e) {
+        await Navigation.PushAsync(new Page_map());
+    }
+
+    private async void view_video_Clicked(object sender,EventArgs e) {
+        await Navigation.PushAsync(new Page_video());
+    }
+
+    private async void view_audio_Clicked(object sender,EventArgs e) {
+        await Navigation.PushAsync(new Page_audio());
     }
 }
