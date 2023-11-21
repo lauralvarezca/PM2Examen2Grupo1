@@ -1,12 +1,98 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="PM2Examen2Grupo1.Views.Page_update"
              Title="Page_update">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Padding="20" CornerRadius="0">
+                <Image Source="@Images/uth.png"
+                    HeightRequest="50"
+                   />
+            </Frame>
+
+            <toolkit:MediaElement
+                            x:Name="viewVideoUpd"
+                            HeightRequest="200"
+                            WidthRequest="350"
+                            BackgroundColor="White"
+                            Margin="40,0,40,0"
+                             />
+
+            <Button x:Name="btnGabarVideoUpd"
+                Text="Grabar Video"
+                BackgroundColor="Purple"
+                TextColor="White"
+                Margin="5"
+                Clicked="btnGabarVideoUpd_Clicked"
+                />
+
+            <Label Text="Latitude"
+               TextColor="Black"
+               Margin="5"
+               HorizontalOptions="StartAndExpand"/>
+
+            <Entry Keyboard="Numeric" 
+               x:Name="txtLatitudUpd" 
+               TextColor="Black"
+               Placeholder="Latitud" 
+               IsEnabled="False"/>
+
+            <Label Text="Longitud" 
+               TextColor="Black"
+               HorizontalOptions="StartAndExpand"/>
+
+            <Entry Keyboard="Numeric" 
+               x:Name="txtLongitudUpd" 
+               TextColor="Black"
+               Placeholder="Longitud" 
+               IsEnabled="False"/>
+
+            <Label Text="Descripcion"
+               TextColor="Black"
+               HorizontalOptions="StartAndExpand"/>
+
+            <Editor Placeholder="Descripcion del lugar"
+                x:Name="txtDescripcionUpd"
+                TextColor="Black"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand"
+                />
+
+            <Button x:Name="btnGrabarAudioUpd"
+                Text="Grabar Audio"
+                BackgroundColor="Purple"
+                TextColor="White"
+                Margin="5"
+                Clicked="btnGrabarAudioUpd_Clicked"
+                 />
+
+            <Button x:Name="btnSalvarUbicacionUpd"
+                Text="Salvar Ubicacion"
+                Clicked="btnSalvarUbicacionUpd_Clicked"
+                BackgroundColor="Purple"
+                TextColor="White"
+                Margin="5"
+                />
+            <Button x:Name="btnObtenerNuevaUbicacion"
+                Clicked="btnObtenerNuevaUbicacion_Clicked"
+                Text="Lista Ubicacion"
+                BackgroundColor="Purple"
+                TextColor="White"
+                Margin="5"
+                 />
+
+            <Label x:Name="lblUrlVideoUpd"
+                   IsVisible="false"
+                   />
+            <Label x:Name="lblUrlAudioUpd"
+                   IsVisible="false"
+                   />
+
+        </StackLayout>
+    </ContentPage.Content>
+
+
 </ContentPage>
