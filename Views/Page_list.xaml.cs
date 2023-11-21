@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Views;
 using PM2Examen2Grupo1.Controllers;
 using PM2Examen2Grupo1.Models;
 using System.Collections.ObjectModel;
@@ -5,8 +6,8 @@ using System.Text.Json;
 
 namespace PM2Examen2Grupo1.Views;
 
-public partial class Page_list : ContentPage{
-    public static int id=0;
+public partial class Page_list:ContentPage {
+    public static int id = 0;
     public static string url_video, url_audio, descripcion;
     public static double latitud, longitud;
 
@@ -15,57 +16,45 @@ public partial class Page_list : ContentPage{
         get; set;
     }
 
-    public Page_list(){
-		InitializeComponent();
+    public Page_list() {
+        InitializeComponent();
 
-        Items = new ObservableCollection<Sitios>();
+        Items=new ObservableCollection<Sitios>();
 
-        this.BindingContext = this;
+        this.BindingContext=this;
         load_record_date();
     }
 
-    private async Task load_record_date()
-    {
-        try
-        {
+    private async Task load_record_date() {
+        try {
             var services_bd = await get_date_records();
 
-            if (services_bd != null)
-            {
-                foreach (var data in services_bd)
-                {
+            if(services_bd!=null) {
+                foreach(var data in services_bd) {
                     Items.Add(data);
                 }
             }
 
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Advertencia", "error: " + ex.ToString(), "OK");
+        } catch(Exception ex) {
+            await DisplayAlert("Advertencia","error: "+ex.ToString(),"OK");
         }
     }
 
-    private async Task<List<Sitios>> get_date_records()
-    {
+    private async Task<List<Sitios>> get_date_records() {
         Sitios data = new Sitios();
         string response = "";
 
-        try
-        {
+        try {
             Metodos insert = new Metodos();
-            response = await Task.Run(() => insert.select_async(data, RestApi.select_sitios));
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Advertencia", "" + ex, "OK");
+            response=await Task.Run(() => insert.select_async(data,RestApi.select_sitios));
+        } catch(Exception ex) {
+            await DisplayAlert("Advertencia",""+ex,"OK");
         }
 
-        if (response != "" && response != null)
-        {
+        if(response!=""&&response!=null) {
             List<Sitios> list = JsonSerializer.Deserialize<List<Sitios>>(response);
 
-            if (list.Count > 0)
-            {
+            if(list.Count>0) {
                 return list;
             }
         }
@@ -96,9 +85,9 @@ public partial class Page_list : ContentPage{
     }
 
     private async Task<bool> verification_id() {
-        if(id!=0){
+        if(id!=0) {
             return true;
-        }else{
+        } else {
             await DisplayAlert("Advertencia","Elige un item","OK");
         }
 
@@ -108,7 +97,7 @@ public partial class Page_list : ContentPage{
     private async Task delete() {
 
         Sitios users = new Sitios();
-        users.Id = id;
+        users.Id=id;
 
         string response = "";
 
@@ -129,18 +118,41 @@ public partial class Page_list : ContentPage{
     }
 
     private async void update_Clicked(object sender,EventArgs e) {
-        await Navigation.PushAsync(new Page_update());
+        if(await verification_id()) {
+            await Navigation.PushAsync(new Page_update());
+        }
     }
 
     private async void view_map_Clicked(object sender,EventArgs e) {
-        await Navigation.PushAsync(new Page_map());
+        if(await verification_id()) {
+            await Navigation.PushAsync(new Page_map());
+        }
     }
 
     private async void view_video_Clicked(object sender,EventArgs e) {
-        await Navigation.PushAsync(new Page_video());
+        if(await verification_id()) {
+            await Navigation.PushAsync(new Page_video());
+        }
     }
 
     private async void view_audio_Clicked(object sender,EventArgs e) {
-        await Navigation.PushAsync(new Page_audio());
+        if(await verification_id()) {
+            
+            if(!string.IsNullOrEmpty(url_audio)) {
+                ReproducirAudio();
+            } else {
+                await DisplayAlert("Advertencia","No hay URL de audio disponible.","OK");
+            }
+
+        }
+    }
+
+    private void ReproducirAudio() {
+        MediaElement mediaElement = new MediaElement {
+            Source=url_audio,
+            ShouldAutoPlay=true
+        };
+
+        container.Add(mediaElement);
     }
 }

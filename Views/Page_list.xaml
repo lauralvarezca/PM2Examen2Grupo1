@@ -4,7 +4,7 @@
              x:Class="PM2Examen2Grupo1.Views.Page_list"
              Title="Page_list">
 
-    <Grid HorizontalOptions="Start" VerticalOptions="Start">
+    <Grid HorizontalOptions="Start" VerticalOptions="Start" x:Name="container">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
