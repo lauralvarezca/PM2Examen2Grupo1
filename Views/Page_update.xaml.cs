@@ -240,6 +240,12 @@ public partial class Page_update:ContentPage
 
     private async Task Update_Site()
     {
+        if (string.IsNullOrEmpty(txtDescripcionUpd.Text) || string.IsNullOrEmpty(txtLatitudUpd.Text) || string.IsNullOrEmpty(txtLongitudUpd.Text) || string.IsNullOrEmpty(lblUrlVideoUpd.Text) || string.IsNullOrEmpty(lblUrlAudioUpd.Text))
+        {
+            await DisplayAlert("Advertencia", "Todos los campos son obligatorios", "OK");
+            return;
+        }
+
         Sitios users = new Sitios();
         users.Id = Page_list.id;
         users.Descripcion = txtDescripcionUpd.Text;
@@ -263,11 +269,12 @@ public partial class Page_update:ContentPage
 
         if (response == "exitoso")
         {
-            await DisplayAlert("Exitoso", "Su sitio ha sido actualizado correctamente", "OK");
+            await DisplayAlert("Exitoso", "Los datos se han actualizado con exito", "OK");
+            await Navigation.PopAsync();
         }
         else
         {
-            await DisplayAlert("Advertencia", "No se inserto el sitio: " + response, "OK");
+            await DisplayAlert("Advertencia", "No se pudieron actualizar los datos: " + response, "OK");
         }
     }
 

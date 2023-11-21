@@ -6,7 +6,6 @@
              x:Class="PM2Examen2Grupo1.MainPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Nueva Ubicacion" Clicked="ToolbarItem_Clicked"></ToolbarItem>
         <ToolbarItem Text="Ubicaciones Salvadas" Clicked="ToolbarItem_Clicked_1"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -27,7 +26,6 @@
 
             <Button x:Name="btnGabarVideo"
                     Text="Grabar Video"
-                    BackgroundColor="Purple"
                     TextColor="White"
                     Margin="5"
                     Clicked="btnGabarVideo_Clicked"
@@ -67,7 +65,7 @@
 
             <Button x:Name="btnGrabarAudio"
                     Text="Grabar Audio"
-                    BackgroundColor="Purple"
+                    
                     TextColor="White"
                     Margin="5"
                     Clicked="btnGrabarAudio_Clicked"
@@ -76,19 +74,20 @@
             <Button x:Name="btnSalvarUbicacion"
                     Text="Salvar Ubicacion"
                     Clicked="btnSalvarUbicacion_Clicked"
-                    BackgroundColor="Purple"
+                    BackgroundColor="Green"
                     TextColor="White"
                     Margin="5"
                     />
             <Button x:Name="btnUbicacionSalvadas"
                     Clicked="btnUbicacionSalvadas_Clicked"
                     Text="Lista Ubicacion"
-                    BackgroundColor="Purple"
+                    
                     TextColor="White"
                     Margin="5"
                      />
 
-            <Label x:Name="lblUrl"/>
+            <Label x:Name="lblUrl"
+                   IsVisible="false"/>
 
         </StackLayout>
     </ContentPage.Content>

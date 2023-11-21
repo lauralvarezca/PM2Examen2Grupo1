@@ -74,7 +74,8 @@ public partial class Page_list:ContentPage {
             latitud=item.Latitud;
             longitud=item.Longitud;
             descripcion=item.Descripcion;
-            await DisplayAlert("Advertencia",""+id,"OK");
+
+            await DisplayAlert("Mensaje","Seleccionaste el Sitio #: "+id,"OK");
         }
     }
 

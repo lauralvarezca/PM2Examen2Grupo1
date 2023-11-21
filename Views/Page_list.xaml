@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PM2Examen2Grupo1.Views.Page_list"
-             Title="Page_list">
+             Title="Lista de Sitios">
 
     <Grid HorizontalOptions="Start" VerticalOptions="Start" x:Name="container">
         <Grid.RowDefinitions>
@@ -17,7 +17,7 @@
         <CollectionView Grid.Row="0" ItemsSource="{Binding Items}" Margin="12" MaximumHeightRequest="400">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border BackgroundColor="Aqua" Margin="0,0,0,0" Padding="0,5,0,5" WidthRequest="330" VerticalOptions="Start" HorizontalOptions="Center">
+                    <Border BackgroundColor="LightGrey" Margin="3" Padding="2" WidthRequest="400" VerticalOptions="Start" HorizontalOptions="Center">
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="12"/>
                         </Border.StrokeShape>
@@ -29,17 +29,22 @@
                             <Grid Padding="10" ColumnSpacing="10">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Image Grid.Column="1" HorizontalOptions="Start" Source="{Binding VideoDigital}" WidthRequest="50"/>
+                                <Image Grid.Column="0" HorizontalOptions="Start" Source="{Binding VideoDigital}" WidthRequest="50"/>
 
-                                <Label Grid.Column="2" Text="{Binding Descripcion}" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+                                <Label Grid.Column="1" 
+                                       Text="{Binding Descripcion}" 
+                                       HorizontalOptions="Start" 
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Start"
+                                       FontAttributes="Bold"
+                                       FontSize="18"
+                                       />
                             </Grid>
 
 
@@ -49,11 +54,42 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Text="Eliminar" Grid.Row="1" Margin="5" Clicked="delete_Clicked"></Button>
-        <Button Text="Actualizar" Grid.Row="2" Margin="5" Clicked="update_Clicked"></Button>
-        <Button Text="Ver mapa" Grid.Row="3" Margin="5" Clicked="view_map_Clicked"></Button>
-        <Button Text="Escuchar audio" Grid.Row="4" Margin="5" Clicked="view_audio_Clicked"></Button>
-        <Button Text="Ver video" Grid.Row="5" Margin="5" Clicked="view_video_Clicked"></Button>
+        <Button Text="Eliminar" 
+                Grid.Row="1" 
+                Margin="3" 
+                Clicked="delete_Clicked" 
+                BackgroundColor="Red"
+                FontAttributes="Bold"
+                FontSize="18"
+                
+                />
+        <Button Text="Actualizar" 
+                Grid.Row="2" 
+                Margin="3" 
+                Clicked="update_Clicked"
+                BackgroundColor="Green"
+                FontAttributes="Bold"
+                FontSize="18"
+                />
+        <Button Text="Escuchar audio" 
+                Grid.Row="4" 
+                Margin="3" 
+                Clicked="view_audio_Clicked"
+                FontAttributes="Bold"
+                FontSize="18"
+                />
+        <Button Text="Ver mapa" 
+                Grid.Row="3" Margin="5" 
+                Clicked="view_map_Clicked"
+                FontAttributes="Bold"
+                FontSize="18"
+                />
+        <Button Text="Ver video" 
+                Grid.Row="5" Margin="3" 
+                Clicked="view_video_Clicked"
+                FontAttributes="Bold"
+                FontSize="18"
+                />
 
     </Grid>
 </ContentPage>

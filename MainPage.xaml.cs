@@ -167,12 +167,8 @@ namespace PM2Examen2Grupo1 {
 
         }
 
-        private void ToolbarItem_Clicked(object sender,EventArgs e) {
-
-        }
-
-        private void ToolbarItem_Clicked_1(object sender,EventArgs e) {
-
+        private async void ToolbarItem_Clicked_1(object sender,EventArgs e) {
+            await Navigation.PushAsync(new Page_list());
         }
 
         //public async Task<bool> CheckAndRequestStoragePermission()
@@ -272,11 +268,14 @@ namespace PM2Examen2Grupo1 {
             if (response == "exitoso")
             {
                 await DisplayAlert("Exitoso", "Los datos se han agregado con exito", "OK");
+                LimpiarCampos();
             }
             else
             {
                 await DisplayAlert("Advertencia", "No se pudieron crear los datos " + response, "OK");
             }
+
+            
         }
         private async void btnGrabarAudio_Clicked(object sender,EventArgs e) {
             if(!isRecording) {
@@ -334,6 +333,13 @@ namespace PM2Examen2Grupo1 {
         private async void btnUbicacionSalvadas_Clicked(object sender,EventArgs e) {
             await Navigation.PushAsync(new Page_list());
         }
+
+            private void LimpiarCampos()
+            {
+                txtDescripcion.Text = "";
+                viewVideo.Source = null;
+                lblaudio = "";
+            }
 
     }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="PM2Examen2Grupo1.Views.Page_update"
-             Title="Page_update">
+             Title="Actualizar Sitio">
 
     <ContentPage.Content>
         <StackLayout>
