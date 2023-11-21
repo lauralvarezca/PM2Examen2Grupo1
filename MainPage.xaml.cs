@@ -242,31 +242,42 @@ namespace PM2Examen2Grupo1 {
 
         }
 
-        private async Task insert_user() {
+        private async Task insert_user()
+        {
+            if (string.IsNullOrEmpty(txtDescripcion.Text) || string.IsNullOrEmpty(txtLatitud.Text) || string.IsNullOrEmpty(txtLongitud.Text) || string.IsNullOrEmpty(lblvideo) || string.IsNullOrEmpty(lblaudio))
+            {
+                await DisplayAlert("Advertencia", "Todos los campos son obligatorios", "OK");
+                return;
+            }
+
             Sitios users = new Sitios();
-            users.Descripcion=txtDescripcion.Text;
-            users.Latitud=Convert.ToDouble(txtLatitud.Text);
-            users.Longitud=Convert.ToDouble(txtLongitud.Text);
-            users.VideoDigital=lblvideo;
-            users.AudioFile=lblaudio;
+            users.Descripcion = txtDescripcion.Text;
+            users.Latitud = Convert.ToDouble(txtLatitud.Text);
+            users.Longitud = Convert.ToDouble(txtLongitud.Text);
+            users.VideoDigital = lblvideo;
+            users.AudioFile = lblaudio;
+
             string response = "";
 
-            try {
+            try
+            {
                 Metodos insert = new Metodos();
-                response=await Task.Run(() => insert.insert_update_async(users,RestApi.insert));
-            } catch(Exception ex) {
-                await DisplayAlert("Advertencia",""+ex,"OK");
+                response = await Task.Run(() => insert.insert_update_async(users, RestApi.insert));
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Advertencia", "" + ex, "OK");
             }
 
-
-
-            if(response=="exitoso") {
-                await DisplayAlert("Exitoso","Tu cuenta se ha creado exitosamente, debes esperar unas minutos o horas para darte acceso","OK");
-            } else {
-                await DisplayAlert("Advertencia","No se inserto usuario: "+response,"OK");
+            if (response == "exitoso")
+            {
+                await DisplayAlert("Exitoso", "Los datos se han agregado con exito", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Advertencia", "No se pudieron crear los datos " + response, "OK");
             }
         }
-
         private async void btnGrabarAudio_Clicked(object sender,EventArgs e) {
             if(!isRecording) {
                 var permiso = await Permissions.RequestAsync<Permissions.Microphone>();
